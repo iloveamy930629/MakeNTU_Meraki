@@ -4,8 +4,9 @@ import PillGrid from './components/PillGrid';
 import './MainPage.css';
 
 let flag = false;
-let num =0;
-
+let num1 =0;
+let num2 =0;
+let num3 =0;
 const MainPage = () =>{
     
     //for return
@@ -175,7 +176,7 @@ const MainPage = () =>{
                     setHeartrate(data.heart);
                 })
                 .catch((err) => console.error(err));
-        }, 3000);
+        }, 30000);
 
     }, []);
 
@@ -227,26 +228,40 @@ const MainPage = () =>{
         });
     }
 
-    function alertEvent1() {
-        
-        alert(" Your blood oxygen is too low, please pay attention! ");
+    function alertEvent1() {     
+        if(num1==0){
+            num1++;
+            alert(" Your blood oxygen is too low, please pay attention! ");
+        }
     }
     function alertEvent2() {
-        alert(" Your heartrate is too low, please pay attention! ");
+        if(num2==0){
+            num2++;
+            alert(" Your heartrate is too low, please pay attention! ");
+        }
+        // alert(" Your heartrate is too low, please pay attention! ");
     }
     function alertEvent3() {
-        alert(" Your heartrate is too high, please pay attention! ");
+        if(num3==0){
+            num3++;
+            alert(" Your heartrate is too high, please pay attention! ");
+            // break;
+        }
+        // alert(" Your heartrate is too high, please pay attention! ");
     }
     
     
-    if (Oxygen < LowerLimitOxygen){
+    if (Oxygen -LowerLimitOxygen<0){
+        num1=0;
         alertEvent1();
     }
     
-    if (Heartrate < LowerLimitHeartrate){
+    if (Heartrate - LowerLimitHeartrate<0){
+        num2=0;
         alertEvent2();
     }
-    if (Heartrate > UpperLimitHeartrate){
+    if (Heartrate - UpperLimitHeartrate >0){
+        num3=0;
         alertEvent3();
     }
     
